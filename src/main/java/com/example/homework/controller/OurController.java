@@ -1,6 +1,7 @@
 package com.example.homework.controller;
 
 import com.example.homework.dto.MessageDTO;
+import com.example.homework.service.MessageProcessingService;
 import com.example.homework.service.PayloadService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -30,6 +31,11 @@ public class OurController {
     @RequestMapping(value = "/api/data", method = RequestMethod.POST)
     public ResponseEntity saveMessage(@RequestBody MessageDTO body) {
         return ResponseEntity.ok(payloadService.processMessage(body));
+    }
+
+    @RequestMapping(value="/api/data/all", method = RequestMethod.GET)
+    public ResponseEntity getAllMessages() {
+        return ResponseEntity.ok(payloadService.getAllMessages());
     }
 
 }

@@ -6,6 +6,8 @@ import com.example.homework.repository.MessageRepository;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class MessageProcessingService implements PayloadService {
@@ -23,6 +25,18 @@ public class MessageProcessingService implements PayloadService {
         savedMessage.setCreationDate(LocalDateTime.now());
         messageRepository.save(savedMessage);
         return "Saved";
+    }
+
+    @Override
+    public List<MessageDTO> getAllMessages() {
+        List<Message> allMessages = messageRepository.findAll();
+        List<MessageDTO> resultList = new ArrayList<>(allMessages.size());
+        for (Message message : allMessages) {
+            MessageDTO temp = new MessageDTO();
+            temp.setMessage(message.getMessage());
+            resultList.add(temp);
+        }
+        return resultList;
     }
 
     @Override
