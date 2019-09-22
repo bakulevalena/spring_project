@@ -8,8 +8,9 @@ public class MessageProcessing implements PayloadService{
     String savedMessage;
 
     @Override
-    public void processMessage(String message) {
+    public String processMessage(String message) {
         this.savedMessage=message;
+        return "Saved";
     }
 
     @Override

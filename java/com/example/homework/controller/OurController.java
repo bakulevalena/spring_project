@@ -7,15 +7,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.time.LocalDateTime;
 import java.util.Date;
 
 @RestController
 public class OurController {
 
-    private PayloadService payloadService;
-
     Date date = new Date();
+    private PayloadService payloadService;
 
     public OurController(PayloadService payloadService) {
         this.payloadService = payloadService;
@@ -33,8 +31,7 @@ public class OurController {
 
     @RequestMapping(value = "/api/data", method = RequestMethod.POST)
     public ResponseEntity saveMessage(@RequestBody String body) {
-        payloadService.processMessage(body);
-        return ResponseEntity.ok("Saved");
+        return ResponseEntity.ok(payloadService.processMessage(body));
     }
 
 }
