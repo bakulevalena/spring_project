@@ -1,1 +1,2 @@
-# spring_project
+# Simple project with String 
+
